@@ -1,0 +1,24 @@
+from colorama import init, Fore, Style
+
+# Inicializa a colorama e define as cores iniciais
+init()
+
+def definir_cor(nivel):
+    """Retorna a cor e a mensagem de alerta correspondente ao nível do reservatório."""
+    niveis = [
+        ("Muito baixo (crítico)", Fore.RED),
+        ("Baixo", Fore.YELLOW),
+        ("Médio", Fore.GREEN),
+        ("Alto", Fore.CYAN),
+        ("Muito alto (alerta)", Fore.BLUE)
+    ]
+    return niveis[nivel - 1]
+
+def exibir_situacao_reservatorio(nivel):
+    """Exibe a situação do reservatório com a cor correspondente e restaura o estilo padrão."""
+    mensagem, cor = definir_cor(nivel)
+    print(f"{cor}[Nível {nivel}] {mensagem}{Style.RESET_ALL}")
+
+# Simulação de monitoramento (varrendo todos os 5 níveis)
+for nivel in range(1, 6):
+    exibir_situacao_reservatorio(nivel)
